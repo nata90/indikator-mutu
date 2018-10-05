@@ -1,0 +1,14 @@
+Database => sudah
+Master data => sudah
+Template => sudah
+Menu => sudah
+Rekap dlm bentuk tabel => sudah
+prosentase => sudah
+# filter dan validasi
+   - hak akses menu berdasarkan level user => sudah
+   - hak akses input berdasarkan satker => sudah
+   - hak akses rekap berdasarkan satker => sudah
+   - lihat rekap berdasarkan bulan/tahun (dinamis)
+   - laporan berdasarkan satker
+print laporan
+grafik per indikator
