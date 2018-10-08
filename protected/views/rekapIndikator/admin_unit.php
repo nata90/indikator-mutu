@@ -35,26 +35,26 @@ if(status == 1){ //admin
 	$('#filter').click(function(){
 		var satker  = $('#level').val();
 		var tgl  = $('#date').val();
-		window.location.href = baseUrl+'/index.php?r=RekapIndikator/admin&idsat='+satker+'&tgl='+tgl;
+		window.location.href = baseUrl+'/index.php?r=RekapIndikator/adminunit&idsat='+satker+'&tgl='+tgl;
 	});
 
 
 	$('#tgl_edit').click(function(){
 		var tgl  = $('#date').val();
 		var satker  = $('#level').val();
-		window.location.href = baseUrl+'/index.php?r=RekapIndikator/admin&tgl='+tgl+'&idsat='+satker;
+		window.location.href = baseUrl+'/index.php?r=RekapIndikator/adminunit&tgl='+tgl+'&idsat='+satker;
 	});
 	
 }else {
 	$('#filter').click(function(){
 		var satker  = $('#level').val();
-		window.location.href = baseUrl+'/index.php?r=RekapIndikator/admin&idsat='+satker;
+		window.location.href = baseUrl+'/index.php?r=RekapIndikator/adminunit&idsat='+satker;
 	});
 
 
 	$('#tgl_edit').click(function(){
 		var tgl  = $('#date').val();
-		window.location.href = baseUrl+'/index.php?r=RekapIndikator/admin&tgl='+tgl;
+		window.location.href = baseUrl+'/index.php?r=RekapIndikator/adminunit&tgl='+tgl;
 	});
 	
 }
