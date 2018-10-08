@@ -126,8 +126,8 @@ if(Yii::app()->user->idsatker == 2 ){
 <input type="button" id="filter" value="Cari">
 <?php 
 }//else {
-	echo Chtml::textField('date', date('d-m-Y', strtotime($tglnow)));
-	echo '<input type="button" id="tgl_edit" value="Ubah">';
+	echo Chtml::hiddenField('date', date('d-m-Y', strtotime($tglnow)));
+	//echo '<input type="button" id="tgl_edit" value="Ubah">';
 	if(isset($_GET['tgl']) && isset($_GET['idsat']))
 		echo '<a href="'. Yii::app()->createUrl('RekapIndikator/rekapnew', array('tgl'=>$_GET['tgl'], 'idsat'=>$_GET['idsat'])) .'"><input type="button" id="tgl_edit" value="Download"></a>';
 	else if(isset($_GET['tgl']))
@@ -190,9 +190,9 @@ if($listIdSatker != null){
 		$n = array();
 		$d = array();
 		foreach($data as $item){
-					$dateA = date('j', strtotime($item->tgl));
-					$n[$dateA] = $item->numerator;
-					$d[$dateA] = $item->denumerator;
+			$dateA = date('j', strtotime($item->tgl));
+			$n[$dateA] = $item->numerator;
+			$d[$dateA] = $item->denumerator;
 				
 		}
 		$totalN = null;
@@ -202,7 +202,7 @@ if($listIdSatker != null){
 		for($j = 1 ; $j<=$total; $j++){
 		
 			if(array_key_exists($j,$n)){
-				if($dt == $j){
+				/*if($dt == $j){
 					echo '<td width="20px">
 					<input type="hidden" name="tgl" value="'.$tglnow.'" >
 					<input type="text" size="3" placeholder="N" name="RekapIndikator['.$val->id_ind_satker.'][numerator]" size="3" value="'.$n[$j].'">
@@ -210,16 +210,16 @@ if($listIdSatker != null){
 					<input type="text" width="35px" name="RekapIndikator['.$val->id_ind_satker.'][denumerator]" placeholder="D" size="3" value="'.$d[$j].'"></td>';
 					$totalN += $n[$j];
 					$totalD += $d[$j];
-				}else {
+				}else {*/
 					echo '<td width="20px">'.$n[$j].'</br>'.$d[$j].'</td>';
 					$totalN += $n[$j];
 					$totalD += $d[$j];
-				}
+				//}
 				
 				// echo '<td><input type="text" size="3" placeholder="N" value="'.$n[$j].'" readonly="readonly">/<input type="text" size="3" placeholder="D" value="'.$d[$j].'" readonly="readonly"></td>';
 			}else{
 				//if(date('d') == $j){
-				if($dt == $j){
+				/*if($dt == $j){
 					echo '<td width="20px">
 					<input type="hidden" name="tgl" value="'.$tglnow.'" >
 					
@@ -227,12 +227,12 @@ if($listIdSatker != null){
 					</br>
 					<input type="text" width="35px" name="RekapIndikator['.$val->id_ind_satker.'][denumerator]" placeholder="D" size="3"></td>';
 					
-				}else if(date('d') < $j){
+				}else if(date('d') < $j){*/
 					echo '<td width="20px"></td>';
-				}else{
+				/*}else{
 					echo '<td width="20px"></td>';
 					//echo '<td><input type="text" size="3" placeholder="N">/<input type="text" size="3" placeholder="D"></td>';
-				}
+				}*/
 			}	
 		}
 		//echo '<td></td>';
@@ -250,7 +250,7 @@ if($listIdSatker != null){
 </table>
 </div>
 <div class="" align="center">
-	<?php echo CHtml::submitButton('simpan'); ?>
+	<?php //echo CHtml::submitButton('simpan'); ?>
 </div>
 <?php /*echo CHtml::submitButton('Simpan'); */ ?>
 <?php $this->endWidget(); ?>

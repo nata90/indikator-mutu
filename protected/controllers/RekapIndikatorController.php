@@ -213,6 +213,8 @@ class RekapIndikatorController extends Controller
 	}
 
 	public function actionAdminUnit(){
+		$this->layout = 'column1';
+		
 		if(isset($_GET['idsat'])){
 			$idUnit = $_GET['idsat'];
 		}else {
