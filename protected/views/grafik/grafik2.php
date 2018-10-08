@@ -136,35 +136,40 @@ EOP;
         <div>
             Tahun <?php echo CHtml::dropDownList('tahun', date('Y'), array(2015=>2015, 2016=>2016, 2017=>2017, 2018=>2018, 2019=>2019, 2020=>2020));?> 
             <button id="search-grafik">CARI</button>      
+            <div>
+                <div class="col-md-9" style="width:73%;display: inline-block; vertical-align: top;">
+                    <table border="1">
+                        <tr>
+                            <td>
+                                <div id="line-chart" style="width: 60%;"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="col-md-3" style="width: 25%; display: inline-block;">
+                    <table border="1" width="100%" style="border: 1px solid black;margin-left: 0px;margin-right: 0px;">
+                        <tr style="background-color:yellow; ">
+                            <td style="text-align:center;"><strong>NO</strong></td>
+                            <td style="text-align:center;"><strong>MINGGU KE-</strong></td>
+                            <td style="text-align:center;"><strong>RENTANG PERIODE</strong></td>
+                        </tr>
+                        <?php 
+                        if($listPeriode != null){
+                            $i = 1;
+                            foreach($listPeriode as $val){ ?>
+                                <tr>
+                                    <td style="padding-left: 2px;padding-right: 2px;text-align:center;"><?php echo $i;?></td>
+                                    <td style="padding-left: 2px;padding-right: 2px;" align="center"><?php echo $val->nama_periode;?></td>
+                                    <td style="padding-left: 2px;padding-right: 2px;" align="left"><?php echo date('d F Y', strtotime($val->start_date)).' s/d '.date('d F Y', strtotime($val->end_date));?></td>
+                                </tr>
+                       <?php $i++;}
+                        }
+                        ?>
+                    </table>
+                </div>
+            </div>
         </div>
-        <table border="1">
-            <tr>
-                <td>
-                    <div id="line-chart" style="width:80%; height:60%;"></div>
-                </td>
-                <td style="padding-left:0px;padding-right:0px;"><div style="width:100%; height:60%;padding-top:5px;">
-                        <table border="1" width="100%" style="border: 1px solid black;margin-left: 0px;margin-right: 0px;">
-                            <tr>
-                                <td><strong>NO</strong></td>
-                                <td><strong>MINGGU KE-</strong></td>
-                                <td><strong>RENTANG PERIODE</strong></td>
-                            </tr>
-                            <?php 
-                            if($listPeriode != null){
-                                $i = 1;
-                                foreach($listPeriode as $val){ ?>
-                                    <tr>
-                                        <td style="padding-left: 2px;padding-right: 2px;"><?php echo $i;?></td>
-                                        <td style="padding-left: 2px;padding-right: 2px;" align="center"><?php echo $val->nama_periode;?></td>
-                                        <td style="padding-left: 2px;padding-right: 2px;"><?php echo date('d-m-Y', strtotime($val->start_date)).' s/d '.date('d-m-Y', strtotime($val->end_date));?></td>
-                                    </tr>
-                           <?php $i++;}
-                            }
-                            ?>
-                        </table>
-                    </div></td>
-            </tr>
-        </table>
     </fieldset>
 
 </div>

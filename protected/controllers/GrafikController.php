@@ -84,7 +84,7 @@ class GrafikController extends Controller
 		$listBulan = Utility::listBulanArr();
 
 		$listPeriode = PeriodeMinggu::model()->findAll(array(
-			'condition'=>'status = 1'
+			'condition'=>'status = 1 AND DATE(start_date) <= CURDATE()'
 		));
 
 		$this->render('grafik2',array(

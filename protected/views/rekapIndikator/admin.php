@@ -133,7 +133,7 @@ $listSatker[1] = 'Semua Satker';
 if(Yii::app()->user->idsatker == 2 ){
 	echo Chtml::dropDownList('level', $idsat, $listSatker ,array('empty'=>'Pilih Salah Satu'));
 ?>
-<input type="button" id="filter" value="Cari">
+<input type="button" id="filter" value="Cari" style="padding-bottom:5px;">
 <?php 
 }//else {
 	echo Chtml::textField('date', date('d-m-Y', strtotime($tglnow)));

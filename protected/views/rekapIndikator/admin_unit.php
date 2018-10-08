@@ -71,9 +71,7 @@ if(status == 1){ //admin
 
 <?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
+
 </div><!-- search-form -->
 
 <?php /* $this->widget('zii.widgets.grid.CGridView', array(
@@ -116,24 +114,26 @@ if(isset($_GET['tgl'])){
 	$dt = date('d');
 	$tglnow= date('Y-m-d');
 }
-
-
-$listUnit = Chtml::listData(Unit::model()->findAll(), 'id_unit', 'nama_unit');
-$listUnit[1] = 'Semua Unit';
-if(Yii::app()->user->idsatker == 2 ){
-	echo Chtml::dropDownList('level', $idsat, $listUnit ,array('empty'=>'Pilih Salah Satu'));
 ?>
-<input type="button" id="filter" value="Cari">
+<div>
+	<?php
+	$listUnit = CHtml::listData(Unit::model()->findAll(), 'id_unit', 'nama_unit');
+	$listUnit[1] = 'Semua Unit';
+	if(Yii::app()->user->idsatker == 2 ){
+		echo CHtml::dropDownList('level', $idsat, $listUnit ,array('empty'=>'Pilih Salah Satu', 'style'=>'padding-top:5px;'));
+	?>
+	<input type="button" id="filter" value="Cari" style="margin-bottom:5px;">
+</div>
 <?php 
 }//else {
 	echo Chtml::hiddenField('date', date('d-m-Y', strtotime($tglnow)));
 	//echo '<input type="button" id="tgl_edit" value="Ubah">';
-	if(isset($_GET['tgl']) && isset($_GET['idsat']))
+	/*if(isset($_GET['tgl']) && isset($_GET['idsat']))
 		echo '<a href="'. Yii::app()->createUrl('RekapIndikator/rekapnew', array('tgl'=>$_GET['tgl'], 'idsat'=>$_GET['idsat'])) .'"><input type="button" id="tgl_edit" value="Download"></a>';
 	else if(isset($_GET['tgl']))
 		echo '<a href="'. Yii::app()->createUrl('RekapIndikator/rekapnew', array('tgl'=>$_GET['tgl'])) .'"><input type="button" id="tgl_edit" value="Download"></a>';
 	else 
-		echo '<a href="'. Yii::app()->createUrl('RekapIndikator/rekapnew') .'"><input type="button" id="tgl_edit" value="Download"></a>';
+		echo '<a href="'. Yii::app()->createUrl('RekapIndikator/rekapnew') .'"><input type="button" id="tgl_edit" value="Download"></a>';*/
 //}
 
 $total = date("d", $timestamp);
