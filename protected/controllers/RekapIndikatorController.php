@@ -36,7 +36,7 @@ class RekapIndikatorController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','rekap','rekap2','rekaplaporan','rekaplaporan2'),
+				'actions'=>array('admin','delete','rekap','rekap2','rekaplaporan','rekaplaporan2','adminunit'),
 				//'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -211,7 +211,75 @@ class RekapIndikatorController extends Controller
 			'listIdSatker'=>$listIdSatker,
 		));
 	}
-	
+
+	public function actionAdminUnit(){
+		if(isset($_GET['idsat'])){
+			$idUnit = $_GET['idsat'];
+		}else {
+			$idUnit = Yii::app()->user->idUnit;
+		}
+		
+
+		// if(isset($_POST['RekapIndikator']))
+		if(isset($_POST['RekapIndikator'])){
+			// print_r($_POST);
+			// exit();
+			foreach($_POST['RekapIndikator'] as $key=>$val){
+				$modelNew = RekapIndikator::model()->findByAttributes(array('id_ind_satker'=>$key, 'tgl'=>$_POST['tgl']));
+				if($modelNew == null){
+					$modelNew = new RekapIndikator;
+				}
+				$modelNew->numerator = $val['numerator'];
+				$modelNew->denumerator = $val['denumerator'];
+				$modelNew->id_ind_satker = $key;
+				$modelNew->tgl = $_POST['tgl'];
+				$modelNew->save();
+				
+			}
+			
+
+		}
+		
+		
+		if($idUnit != 1){
+			$modelSatker = IndSatker::model()->findAll(array(
+				'with'=>array(
+					'idIndikator'=>array('alias'=>'a'),
+					'idSatker.idUnit'=>array('alias'=>'b'),
+				),
+				'condition'=>'b.id_unit =:id AND a.status=1',
+				'params'=>array(':id'=>$idUnit),
+				// 'id_satker'=>$idSatker, 'idIndikator.status'=>1
+			));
+		}else{
+			$modelSatker = IndSatker::model()->findAll(array(
+				'with'=>'idIndikator',
+				'condition'=>'idIndikator.status=1',
+			));
+		}
+		
+
+		
+		
+		if($modelSatker != null){
+			foreach($modelSatker as $val){
+				$arrIdSatker[] = $val->id_ind_satker;
+			}
+			$listIdSatker = implode(',', $arrIdSatker);
+		}else {
+			$listIdSatker = null;
+		}
+		
+		$model=new RekapIndikator('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['RekapIndikator']))
+			$model->attributes=$_GET['RekapIndikator'];
+		
+		$this->render('admin_unit',array(
+			'model'=>$model,
+			'listIdSatker'=>$listIdSatker,
+		));
+	}	
 	
 	
 	public function actionLaporan()

@@ -18,7 +18,11 @@
                     'encodeLabel'=>false,
                     'items'=>array(
                         array('label'=>'<i class="fa fa-institution"></i> Beranda', 'url'=>array('site/index')),
-                        array('label'=>'<i class="fa fa-cube"></i> Master Data <span class="caret"></span>', 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array(
+                            'label'=>'<i class="fa fa-cube"></i> Master Data <span class="caret"></span>', 
+                            'url'=>'#',
+                            'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),
+                            'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                             array('label'=>'<i class="fa fa-cube"></i> Data Unit', 'url'=>array('/unit/admin')),
                             array('label'=>'<i class="fa fa-cube"></i> Data Satuan Kerja', 'url'=>array('/satker/admin')),
@@ -29,7 +33,17 @@
 							array('label'=>'<i class="fa fa-cube"></i> Data Pengguna', 'url'=>array('/user/admin')),
                         ), 'visible'=>Yii::app()->user->getLevel()==1),
                         //array('label'=>'<i class="fa fa-database"></i> Isi Rekap', 'url'=>array('rekapindikator/create'), 'visible'=>!Yii::app()->user->isGuest),
-                        array('label'=>'<i class="fa fa-user"></i> Rekap Harian', 'url'=>array('rekapindikator/admin'), 'visible'=>!Yii::app()->user->isGuest),
+                        array(
+                            'label'=>'<i class="fa fa-user"></i> Rekap <span class="caret"></span>', 
+                            'url'=>'#', 
+                            'visible'=>!Yii::app()->user->isGuest,
+                            'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),
+                            'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                            'items'=>array(
+                                array('label'=>'<i class="fa fa-cube"></i> Rekap Harian Per Satker', 'url'=>array('RekapIndikator/admin')),
+                                array('label'=>'<i class="fa fa-cube"></i> Rekap Harian Per Unit', 'url'=>array('RekapIndikator/adminunit')),
+                            )
+                        ),
 						array('label'=>'<i class="fa fa-list"></i> Grafik', 'url'=>array('grafik/indikator'), 'visible'=>Yii::app()->user->getLevel()==1),
                         array('label'=>'<i class="fa fa-list"></i> Laporan', 'url'=>array(''), 'visible'=>!Yii::app()->user->isGuest),
 						// array('label'=>'<i class="fa fa-signal"></i> Grafik', 'url'=>array('rekapindikator/grafik_full')),

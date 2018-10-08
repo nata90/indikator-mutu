@@ -30,6 +30,7 @@ class UserIdentity extends CUserIdentity
 		$this->_id = $user->id_user;
 		$this->setState('level', $user->level);
 		$this->setState('idsatker', $user->id_satker);
+		$this->setState('idUnit', $user->idSatker->idUnit->id_unit);
 		$this->errorCode=self::ERROR_NONE;	
 				}
 		}
